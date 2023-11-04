@@ -1,23 +1,27 @@
+const Products = require("../model-database/models/products");
+const ErrorResponse = require("../utils/errorResponse");
 
-const Products = require('../model/products').Products;
-
-exports.getProducts = async (req, res) => {
- const filter = {};
- if(req.query) {
+exports.getProducts = async (req, res, next) => {
+  let filter = {};
+  if (req.query) {
     filter = req.query;
- }
+  }
 
- const products = await Products.find(filter);
- if(!products) res.status.send("No product available");
+  try {
+    const products = await Product.findAll({
+      where: filter,
+    });
 
- res.status(200).send(products);
-}
+    if (!products || products.length === 0)
+      return next(new ErrorResponse("No product available", 201));
 
+    res.status(200).json({ status: true, products: products });
+  } catch (error) {
+    next(error);
+  }
+};
 
 exports.boughtProduct = async (req, res) => {
-    try {
-        
-    } catch (error) {
-        
-    }
-}
+  try {
+  } catch (error) {}
+};
