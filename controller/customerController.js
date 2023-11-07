@@ -1,8 +1,8 @@
-const User = require("../model-database/models/users");
+const Customer = require("../model-database/models/customers");
 const ErrorResponse = require("../utils/errorResponse");
 const { sequelize } = require("sequelize");
 
-exports.updateUser = async (req, res, next) => {
+exports.updateCustomer = async (req, res, next) => {
   console.log(req.body, "req.body");
   console.log(req.file, "file request");
 
@@ -21,13 +21,13 @@ exports.updateUser = async (req, res, next) => {
   if (req.body.mobile) objForUpdate.mobile = req.body.mobile;
 
   try {
-    await User.update(objForUpdate, {
+    await Customer.update(objForUpdate, {
       where: {
         id: req.body.id,
       },
     });
 
-    res.status(200).json({ status: true, message: "User updated" });
+    res.status(200).json({ status: true, message: "Customer updated" });
   } catch {
     next(error);
   }
@@ -48,13 +48,13 @@ exports.topUp = async (req, res, next) => {
   }
 
   try {
-    await User.update(objForUpdate, {
+    await Customer.update(objForUpdate, {
       where: {
         id: req.body.id,
       },
     });
 
-    res.status(200).json({ status: true, message: "User balance updated" });
+    res.status(200).json({ status: true, message: "Customer balance updated" });
   } catch (error) {
     next(error);
   }

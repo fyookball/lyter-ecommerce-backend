@@ -1,10 +1,9 @@
 require("dotenv").config();
 const jwt = require("jsonwebtoken");
-const User = require("../model-database/models/users");
+const Customer = require("../model-database/models/customers");
+const ErrorResponse = require("../utils/errorResponse");
 
-const requireAuth = (req, res, next) => {
-  const token = req.body.jwt;
-
+const requireCustomerAuth = (req, res, next) => {
   const authHeader = req.headers["authorization"];
 
   // Check if the header exists and has the Bearer token format
@@ -12,41 +11,40 @@ const requireAuth = (req, res, next) => {
     // Extract the token part (remove 'Bearer ' from the header)
     const token = authHeader.split(" ")[1];
 
-    if (token) {
-      jwt.verify(token, process.env.Secret, async (err, decodedToken) => {
-        if (err) {
-          res.status(403).send("Token is not correct");
-        } else {
-          let user = await User.findById(decodedToken.id);
-          res.send(user);
-          next();
-        }
-      });
-    } else {
-      res.status(403).send("No Token");
-    }
+    if (!token) return next(new ErrorResponse("No token available", 401));
+
+    jwt.verify(token, process.env.Secret, async (err, decodedToken) => {
+      if (err) return next(new ErrorResponse("Invalid token", 401));
+
+      let customer = await Customer.findById(decodedToken.id);
+      if (!customer) return next(new ErrorResponse("User not found", 401));
+
+      req.customer = customer;
+      next();
+    });
   }
 };
 
-/*
- const checkUser =  (req, res, next) => {
-   const token = req.body.jwt;
+const requireRetailerAuth = (req, res, next) => {
+  const authHeader = req.headers["authorization"];
 
-   if(token) {
-     jwt.verify(token, process.env.secret, async (err, decodedToken) => {
-      if(err){
-        res.status(403).send('Token is not correct');
-      } else {
-        let user = await User.findById(decodedToken.id);
-        res.send(user);
-        next();
-      }
+  // Check if the header exists and has the Bearer token format
+  if (authHeader && authHeader.startsWith("Bearer ")) {
+    // Extract the token part (remove 'Bearer ' from the header)
+    const token = authHeader.split(" ")[1];
 
-     })
-   } else {
-    res.status(403).send('No Token');
-   }
- }
- */
+    if (!token) return next(new ErrorResponse("No token available", 401));
 
-module.exports = { requireAuth };
+    jwt.verify(token, process.env.Secret, async (err, decodedToken) => {
+      if (err) return next(new ErrorResponse("Invalid token", 401));
+
+      let retailer = await Retailer.findById(decodedToken.id);
+      if (!retailer) return next(new ErrorResponse("User not found", 401));
+
+      req.retailer = retailer;
+      next();
+    });
+  }
+};
+
+module.exports = { requireCustomerAuth, requireRetailerAuth };
