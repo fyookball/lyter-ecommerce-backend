@@ -17,7 +17,7 @@ const sequelize = new Sequelize(
   "lyterinc3",
   {
     dialect: "mysql",
-    host: "localhost",
+    host: "eel.wghservers.com",
   }
 );
 

@@ -22,3 +22,7 @@
 {"level":"info","message":"POST /v1/lyter/auth/login","timestamp":"2023-11-04T02:29:50.320Z"}
 {"level":"info","message":"POST /v1/lyter/auth/signup_customer","timestamp":"2023-11-07T01:26:23.108Z"}
 {"level":"info","message":"POST /v1/lyter/auth/login","timestamp":"2023-11-07T01:26:30.535Z"}
+{"level":"info","message":"POST /v1/lyter/auth/signup_retailer","timestamp":"2023-11-08T14:17:42.160Z"}
+{"level":"info","message":"POST /v1/lyter/auth/login","timestamp":"2023-11-08T14:18:04.271Z"}
+{"level":"info","message":"POST /v1/lyter/auth/signup_customer","timestamp":"2023-11-08T14:18:12.272Z"}
+{"level":"info","message":"POST /v1/lyter/auth/login","timestamp":"2023-11-08T14:18:26.583Z"}
