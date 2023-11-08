@@ -13,7 +13,11 @@ const store = sequelize.define("store", {
     type: Sequelize.STRING,
     allowNull: true,
   },
-  location: {
+  avatar: {
+    type: Sequelize.STRING,
+    allowNull: true,
+  },
+  deliveryTime: {
     type: Sequelize.STRING,
     allowNull: true,
   },
@@ -26,6 +30,10 @@ const store = sequelize.define("store", {
     type: Sequelize.INTEGER,
     allowNull: false,
     defaultValue: 0,
+  },
+  description: {
+    type: Sequelize.STRING,
+    allowNull: true,
   },
 });
 

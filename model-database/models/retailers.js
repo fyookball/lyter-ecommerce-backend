@@ -9,14 +9,13 @@ const retailers = sequelize.define("retailers", {
     defaultValue: Sequelize.UUIDV4, // Provide a default value (e.g., UUIDv4)
     allowNull: false, // Make it non-nullable if required
   },
-  avatar: {
+  first_name: {
     type: Sequelize.STRING,
-    allowNull: true,
-  },
-  account_status: {
-    type: Sequelize.BOOLEAN,
     allowNull: false,
-    defaultValue: true,
+  },
+  last_name: {
+    type: Sequelize.STRING,
+    allowNull: false,
   },
   email: {
     type: Sequelize.STRING,
@@ -26,25 +25,10 @@ const retailers = sequelize.define("retailers", {
     type: Sequelize.STRING,
     allowNull: false,
   },
-  mobile: {
-    type: Sequelize.STRING,
-    allowNull: true,
-  },
-  city: {
-    type: Sequelize.STRING,
-    allowNull: true,
-  },
-  address: {
-    type: Sequelize.STRING,
-    allowNull: true,
-  },
-  balanceUsdc: {
-    type: Sequelize.INTEGER,
+  account_status: {
+    type: Sequelize.BOOLEAN,
     allowNull: false,
-  },
-  balanceUsdt: {
-    type: Sequelize.INTEGER,
-    allowNull: false,
+    defaultValue: true,
   },
 });
 

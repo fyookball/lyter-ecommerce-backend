@@ -36,6 +36,10 @@ const products = sequelize.define("products", {
     type: Sequelize.STRING,
     allowNull: false,
   },
+  barcode: {
+    type: Sequelize.STRING,
+    allowNull: false,
+  },
   status: {
     type: Sequelize.STRING,
     allowNull: false,

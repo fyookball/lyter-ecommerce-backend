@@ -13,11 +13,6 @@ const customers = sequelize.define("customers", {
     type: Sequelize.STRING,
     allowNull: true,
   },
-  account_status: {
-    type: Sequelize.BOOLEAN,
-    allowNull: false,
-    defaultValue: true,
-  },
   email: {
     type: Sequelize.STRING,
     allowNull: false,
@@ -45,6 +40,11 @@ const customers = sequelize.define("customers", {
   balanceUsdt: {
     type: Sequelize.INTEGER,
     allowNull: false,
+  },
+  account_status: {
+    type: Sequelize.BOOLEAN,
+    allowNull: false,
+    defaultValue: true,
   },
 });
 

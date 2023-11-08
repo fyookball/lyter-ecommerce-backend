@@ -27,16 +27,15 @@ exports.createCustomer = async (req, res, next) => {
 };
 
 exports.createRetailer = async (req, res, next) => {
-  const { email, name, password } = req.body;
+  const { first_name, last_name, email, password } = req.body;
   try {
     //const salt = bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, 10);
     const retailer = await Retailer.create({
+      first_name: first_name,
+      last_name: last_name,
       email: email,
-      name: name,
       password: hashedPassword,
-      balanceUsdt: 0,
-      balanceUsdc: 0,
     });
 
     if (!retailer)

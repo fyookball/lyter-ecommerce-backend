@@ -1,7 +1,7 @@
 {
   "name": "lyterbackend",
   "version": "1.0.0",
-  "description": "backend to lyter ecommerce\u001b[D\u001b[C\u001b[C\u001b product",
+  "description": "backend to lyter products\u001b[D\u001b[C\u001b[C\u001b product",
   "main": "server.js",
   "scripts": {
     "devStart": "nodemon server.js",
@@ -26,5 +26,8 @@
   },
   "devDependencies": {
     "nodemon": "^3.0.1"
+  },
+  "engines": {
+    "node": ">=16.0.0"
   }
 }

@@ -17,6 +17,31 @@ const orders = sequelize.define("orders", {
     type: Sequelize.STRING,
     allowNull: false,
   },
+  amount: {
+    type: Sequelize.INTEGER,
+    allowNull: false,
+    defaultValue: 0,
+  },
+  channel: {
+    type: Sequelize.STRING,
+    allowNull: true,
+    defaultValue: "Website",
+  },
+  payment: {
+    type: Sequelize.STRING,
+    allowNull: true,
+    defaultValue: "Awaits payments",
+  },
+  fufilled: {
+    type: Sequelize.STRING,
+    allowNull: true,
+    defaultValue: "Awaits fufillment",
+  },
+  status: {
+    type: Sequelize.STRING,
+    allowNull: false,
+    defaultValue: "pending",
+  },
 });
 
 module.exports = orders;
