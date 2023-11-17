@@ -1,7 +1,7 @@
 const Sequelize = require("sequelize");
 const sequelize = require("../database/database");
 
-const orders = sequelize.define("orders", {
+const retailer_orders = sequelize.define("retailer_orders", {
   id: {
     type: Sequelize.DataTypes.UUID, // Specify the data type (e.g., UUID, string, etc.)
     primaryKey: true, // Set this field as the primary key
@@ -44,4 +44,4 @@ const orders = sequelize.define("orders", {
   },
 });
 
-module.exports = orders;
+module.exports = retailer_orders;

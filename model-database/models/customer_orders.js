@@ -1,7 +1,7 @@
 const Sequelize = require("sequelize");
 const sequelize = require("../database/database");
 
-const store = sequelize.define("store", {
+const customer_orders = sequelize.define("customer_orders", {
   id: {
     type: Sequelize.DataTypes.UUID, // Specify the data type (e.g., UUID, string, etc.)
     primaryKey: true, // Set this field as the primary key
@@ -11,34 +11,37 @@ const store = sequelize.define("store", {
   },
   name: {
     type: Sequelize.STRING,
-    allowNull: true,
+    allowNull: false,
   },
-  avatar: {
+  featuredImage: {
     type: Sequelize.STRING,
-    allowNull: true,
+    allowNull: false,
   },
-  store_email: {
-    type: Sequelize.STRING,
-    allowNull: true,
-  },
-  deliveryTime: {
-    type: Sequelize.STRING,
-    allowNull: true,
-  },
-  revenue: {
+  amount: {
     type: Sequelize.INTEGER,
     allowNull: false,
     defaultValue: 0,
   },
-  sales: {
-    type: Sequelize.INTEGER,
-    allowNull: false,
-    defaultValue: 0,
-  },
-  description: {
+  channel: {
     type: Sequelize.STRING,
     allowNull: true,
+    defaultValue: "Website",
+  },
+  payment: {
+    type: Sequelize.STRING,
+    allowNull: true,
+    defaultValue: "Awaits payments",
+  },
+  fufilled: {
+    type: Sequelize.STRING,
+    allowNull: true,
+    defaultValue: "Awaits fufillment",
+  },
+  status: {
+    type: Sequelize.STRING,
+    allowNull: false,
+    defaultValue: "pending",
   },
 });
 
-module.exports = store;
+module.exports = customer_orders;

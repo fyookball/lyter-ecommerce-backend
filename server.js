@@ -10,7 +10,8 @@ const { handleErrors } = require("./middleWare/error");
 const Logger = require("./middleWare/log");
 const Customer = require("./model-database/models/customers");
 const Retailer = require("./model-database/models/retailers");
-const Order = require("./model-database/models/orders");
+const CustomerOrder = require("./model-database/models/customer_orders");
+const RetailerOrder = require("./model-database/models/retailer_order");
 const Product = require("./model-database/models/products");
 const Category = require("./model-database/models/category");
 const Store = require("./model-database/models/store");
@@ -33,6 +34,8 @@ const EndpointHead = process.env.EndpointHead;
 app.use(`${EndpointHead}/auth`, auth);
 app.use(`${EndpointHead}/products`, product);
 app.use(`${EndpointHead}/customer`, customer);
+app.use(`${EndpointHead}/store`, customer);
+app.use(`${EndpointHead}/retailer`, customer);
 
 // Error handler middleware
 app.use(handleErrors);
@@ -44,21 +47,27 @@ app.use(handleErrors);
 //Customer.belongsToMany(Retailer, { through: "RetailerCustomer" });
 
 // Customer-Order Relationship
-Customer.hasMany(Order);
-Order.belongsTo(Customer);
+Customer.hasMany(CustomerOrder);
+CustomerOrder.belongsTo(Customer);
+CustomerOrder.hasMany(Store);
+//CustomerOrder.hasMany(Store, { foreignKey: "StoreId" });
 
 // Retailer-Product-store Relationship
 Retailer.hasMany(Product);
-Store.belongsTo(Retailer, { foreignKey: "retialerId" });
+Store.belongsTo(Retailer, { foreignKey: "retailerId" });
 Product.belongsTo(Store, { foreignKey: "storeId" });
 
+//Retailer-order, store and products Relationship
+RetailerOrder.belongsTo(Customer, { foreignKey: "sustomerId" });
+RetailerOrder.belongsTo(Store, { foreignKey: "storeId" });
+RetailerOrder.hasMany(CustomerOrder, { foreignKey: "retailerOrderId" });
+
 //Customer-Store relationship
-Store.belongsToMany(Customer, { through: "StoreCustomer" });
-Customer.belongsToMany(Store, { through: "StoreCustomer" });
+Store.belongsToMany(Customer, { through: "storeCustomer" });
+Customer.belongsToMany(Store, { through: "storeCustomer" });
 
 // Customer-Product Relationship through Orders
-Order.hasMany(Product, { foreignKey: "orderId" });
-// Product.belongsToMany(Order, { through: "OrderProduct" });
+CustomerOrder.hasMany(Product, { foreignKey: "orderId" });
 // Order.belongsToMany(Product, { through: "OrderProduct" });
 
 //Category to product relationship

@@ -21,6 +21,34 @@ const retailers = sequelize.define("retailers", {
     type: Sequelize.STRING,
     allowNull: false,
   },
+  description: {
+    type: Sequelize.STRING,
+    allowNull: false,
+  },
+  avatar: {
+    type: Sequelize.STRING,
+    allowNull: false,
+  },
+  company: {
+    type: Sequelize.STRING,
+    allowNull: false,
+  },
+  job: {
+    type: Sequelize.STRING,
+    allowNull: false,
+  },
+  country: {
+    type: Sequelize.STRING,
+    allowNull: false,
+  },
+  address: {
+    type: Sequelize.STRING,
+    allowNull: false,
+  },
+  phone: {
+    type: Sequelize.STRING,
+    allowNull: false,
+  },
   password: {
     type: Sequelize.STRING,
     allowNull: false,
@@ -29,6 +57,22 @@ const retailers = sequelize.define("retailers", {
     type: Sequelize.BOOLEAN,
     allowNull: false,
     defaultValue: true,
+  },
+  socials_twitter: {
+    type: Sequelize.STRING,
+    allowNull: false,
+  },
+  socials_facebook: {
+    type: Sequelize.STRING,
+    allowNull: false,
+  },
+  socials_instagram: {
+    type: Sequelize.STRING,
+    allowNull: false,
+  },
+  socials_linkedin: {
+    type: Sequelize.STRING,
+    allowNull: false,
   },
 });
 
