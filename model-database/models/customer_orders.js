@@ -12,10 +12,12 @@ const customer_orders = sequelize.define("customer_orders", {
   name: {
     type: Sequelize.STRING,
     allowNull: false,
+    defaultValue: "deprecated"
   },
   featuredImage: {
     type: Sequelize.STRING,
     allowNull: false,
+    defaultValue: "deprecated"
   },
   amount: {
     type: Sequelize.INTEGER,
