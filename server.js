@@ -4,6 +4,7 @@ const { requireAuth } = require("./middleWare/authMiddleware");
 const auth = require("./routes/auth");
 const customer = require("./routes/customer");
 const product = require("./routes/product");
+const order = require("./routes/order");  
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const { handleErrors } = require("./middleWare/error");
@@ -30,12 +31,15 @@ app.use(Logger.logRequest);
 //   res.send("welcome");
 // });
 
-const EndpointHead = process.env.EndpointHead;
+//const EndpointHead = process.env.EndpointHead;
+const EndpointHead = ""; // temporary...- JF
+
 app.use(`${EndpointHead}/auth`, auth);
 app.use(`${EndpointHead}/products`, product);
 app.use(`${EndpointHead}/customer`, customer);
 app.use(`${EndpointHead}/store`, customer);
 app.use(`${EndpointHead}/retailer`, customer);
+app.use(`${EndpointHead}/orders`, order);
 
 // Error handler middleware
 app.use(handleErrors);
