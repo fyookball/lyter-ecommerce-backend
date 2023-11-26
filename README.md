@@ -31,7 +31,7 @@ Modify this file to specify the DB name, user, and password.  You can check data
 
 ## 6. Run the backend.
 
-Navigate into the top level of the cloned repo. Next run `npm install` and then `npm start`
+Navigate into the top level of the cloned repo. Next run `npm install` and then `npm start`  For now, you will just run it one time to allow it to create the DB tables.
 
 ## 7. Manually registre the retailer, store, and default category.
 
@@ -43,9 +43,13 @@ INSERT INTO stores ( id, retailerId, name, store_email, deliveryTime, descriptio
 
 INSERT INTO categories ( id, name, createdAt, updatedAt ) VALUES ( LPAD('1', 36, ' '), 'Food Stuff', NOW(), NOW() );
 
-## 8. Run the front end grocery app or POS app from another terminal
+## 8. After doing manual registration, run the backend app again.
 
-## 9. Test the setup.
+Navigate into the top level of the cloned repo. Next run `npm install` and then `npm start` 
+
+## 9. Run the front end grocery app or POS app from another terminal
+
+## 19. Test the setup.
 
 You should be able to create products on the POS and see them on the grocery app since they both should be accessing the backend DB.
 
